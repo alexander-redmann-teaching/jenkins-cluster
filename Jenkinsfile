@@ -48,16 +48,16 @@ volumes: [
     }
     stage('Create Docker images') {
       container('docker') {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding',
-          credentialsId: 'dockerhub',
-          usernameVariable: 'DOCKER_HUB_USER',
-          passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
+        //withCredentials([[$class: 'UsernamePasswordMultiBinding',
+          //credentialsId: 'dockerhub',
+          //usernameVariable: 'DOCKER_HUB_USER',
+          //passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
           
             //docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
           sh """
             docker build -t namespace/my-image:${gitCommit} .            
             """
-        }
+        //}
       }
     }
     stage('Run kubectl') {
