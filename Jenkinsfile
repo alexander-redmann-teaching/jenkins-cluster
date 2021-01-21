@@ -1,3 +1,4 @@
+// explanation could be found here https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
