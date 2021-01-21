@@ -38,7 +38,7 @@ volumes: [
     stage('Build') {
       container('gradle') {
         try {
-          sh "gradle build"        
+          sh "gradle -g gradle-user-home build"        
         }
         catch (exc) {
           println "Failed to build - ${exc}"
