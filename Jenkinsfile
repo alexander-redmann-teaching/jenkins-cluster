@@ -70,12 +70,24 @@ volumes: [
     }
     stage('Run kubectl') {
       container('kubectl') {
-        sh "kubectl get pods"
+        try {
+          sh "kubectl get pods"        
+        }
+        catch (exc) {
+          println "Failed to run docker - ${exc}"
+          //throw(exc)
+        }    
       }
     }
     stage('Run helm') {
       container('helm') {
-        sh "helm list"
+        try {
+         sh "helm list"
+        }
+        catch (exc) {
+          println "Failed to run helm - ${exc}"
+          //throw(exc)
+        }   
       }
     }
   }
