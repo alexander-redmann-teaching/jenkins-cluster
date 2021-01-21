@@ -22,8 +22,8 @@ volumes: [
         container('gradle') {
           sh """
             pwd
-            echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
-            echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
+            echo "GIT_BRANCH=${gitBranch}"
+            echo "GIT_COMMIT=${gitCommit}"
             gradle test
             """
         }
