@@ -48,6 +48,8 @@ volumes: [
     }
     stage('Create Docker images') {
       container('docker') {
+        
+        try {
         //withCredentials([[$class: 'UsernamePasswordMultiBinding',
           //credentialsId: 'dockerhub',
           //usernameVariable: 'DOCKER_HUB_USER',
@@ -58,6 +60,12 @@ volumes: [
             docker build -t namespace/my-image:${gitCommit} .            
             """
         //}
+        
+        }
+        catch (exc) {
+          println "Failed to build docker - ${exc}"
+          //throw(exc)
+        }    
       }
     }
     stage('Run kubectl') {
